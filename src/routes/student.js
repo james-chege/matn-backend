@@ -8,6 +8,7 @@ const router = express.Router();
 router.use(authenticate);
 
 router.get('/courses/:id', studentController.courses);
+router.get('/', studentController.students);
 router.post(
     '/addCourse',
     [check('studentId').exists(), check('courseId').exists()],

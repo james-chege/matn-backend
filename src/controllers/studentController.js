@@ -1,5 +1,5 @@
-import { validationResult, body } from 'express-validator';
-import { Course, StudentCourse } from "../../database/models";
+import { validationResult } from 'express-validator';
+import { Course, StudentCourse, Student } from "../../database/models";
 import HttpError from "../utils/http-error";
 
 export default {
@@ -46,6 +46,15 @@ export default {
             });
         } catch (error) {
             return res.status(500).json({ error: error.message });
+        }
+    },
+    students: async (req, res, next) => {
+        try {
+            const students = await Student.findAll({});
+            res.json({ students });
+        } catch (e) {
+            const error = new HttpError(e.message || "Could not get students.", 500);
+            return next(error);
         }
     }
 };
