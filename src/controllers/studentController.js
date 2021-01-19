@@ -50,7 +50,7 @@ export default {
     },
     students: async (req, res, next) => {
         try {
-            const students = await Student.findAll({});
+            const students = await Student.findAll({attributes: { exclude: ['password'] }});
             res.json({ students });
         } catch (e) {
             const error = new HttpError(e.message || "Could not get students.", 500);
