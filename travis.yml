@@ -3,10 +3,6 @@ language: node_js
 services:
   - docker
   - postgresql
-env:
-    global:
-      - NODE_ENV=test
-      - TEST_DB_NAME=travis_ci_test
 adons:
   postgresql: "12.3"
 node_js:
