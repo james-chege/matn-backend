@@ -10,7 +10,7 @@
     "coveragePathIgnorePatterns": ["src/__test__"]
   },
   "scripts": {
-    "start": "nodemon --exec  babel-node -- src/index.js",
+    "start": "babel-node -- src/index.js",
     "migrate": "sequelize db:migrate",
     "migrate:undo": "sequelize db:migrate:undo:all",
     "seed": "sequelize db:seed:all",
