@@ -7,7 +7,9 @@
     "node": "10.x"
   },
   "jest": {
-    "coveragePathIgnorePatterns": ["src/__test__"]
+    "coveragePathIgnorePatterns": [
+      "src/__test__"
+    ]
   },
   "scripts": {
     "start": "babel-node -- src/index.js",
@@ -17,7 +19,7 @@
     "seed:undo": "sequelize db:seed:undo:all",
     "setup": "NODE_ENV=test sequelize db:migrate",
     "teardown": "NODE_ENV=test sequelize db:migrate:undo:all",
-    "test": "NODE_ENV=test yarn teardown && yarn setup && jest --colors --detectOpenHandles --coverage"
+    "test": "NODE_ENV=test yarn teardown && yarn setup && jest --colors --detectOpenHandles --coverage && coveralls < coverage/lcov.info"
   },
   "dependencies": {
     "@babel/cli": "^7.11.5",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
+    "coveralls": "^3.1.0",
     "eslint": "^7.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
