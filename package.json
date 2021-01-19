@@ -1,21 +1,55 @@
 {
   "name": "matn",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
   "main": "index.js",
-  "scripts": {
-    "start": "babel-node -- src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "license": "MIT",
+  "engines": {
+    "node": "10.x"
   },
-  "author": "",
-  "license": "ISC",
+  "jest": {
+    "coveragePathIgnorePatterns": ["src/__test__"]
+  },
+  "scripts": {
+    "start": "nodemon --exec  babel-node -- src/index.js",
+    "migrate": "sequelize db:migrate",
+    "migrate:undo": "sequelize db:migrate:undo:all",
+    "seed": "sequelize db:seed:all",
+    "seed:undo": "sequelize db:seed:undo:all"
+  },
   "dependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/node": "^7.10.5",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "7.11.5",
+    "@babel/register": "^7.12.10",
+    "axios": "^0.20.0",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jest": "^26.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.1",
+    "pg": "6.1.0",
+    "request": "^2.88.2",
+    "sequelize": "^6.3.4",
+    "sequelize-cli": "^6.2.0",
+    "supertest": "^6.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.1.0",
+    "eslint": "^7.8.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.6",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1"
   }
 }
