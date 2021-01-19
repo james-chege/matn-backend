@@ -33,15 +33,15 @@ $ yarn install
 
 1. Create a postgres database with name of your choice.
 
-Development DB
-```bash c
-createdb db_name -U postgres 
-```
-
-Test DB
-```bash c
-createdb test_db_name -U postgres 
-```
+    Development DB
+    ```bash c
+    createdb db_name -U postgres 
+    ```
+    
+    Test DB
+    ```bash c
+    createdb test_db_name -U postgres 
+    ```
 
 2. Copy .env.example to .env and edit the environment variables to match your computer's postgres credentials and the databases that you created.
 
