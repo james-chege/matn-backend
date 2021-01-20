@@ -19,7 +19,7 @@
     "seed:undo": "sequelize db:seed:undo:all",
     "setup": "NODE_ENV=test sequelize db:migrate",
     "teardown": "NODE_ENV=test sequelize db:migrate:undo:all",
-    "test": "NODE_ENV=test yarn teardown && yarn setup && jest --colors --detectOpenHandles --coverage && coveralls < coverage/lcov.info"
+    "test": "NODE_ENV=test yarn teardown && yarn setup && jest --colors --coverage && coveralls < coverage/lcov.info"
   },
   "dependencies": {
     "@babel/cli": "^7.11.5",
