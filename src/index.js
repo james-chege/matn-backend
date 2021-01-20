@@ -28,7 +28,9 @@ app.use((error, req, res, next) => {
 });
 
 
-app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
+if (process.env.NODE_ENV != 'test') {
+    app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
+}
 
 
 module.exports = app;
