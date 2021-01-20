@@ -1,7 +1,6 @@
 sudo: false
 language: node_js
 services:
-  - docker
   - postgresql
 adons:
   postgresql: "12.3"
