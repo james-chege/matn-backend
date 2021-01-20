@@ -2,8 +2,6 @@ sudo: false
 language: node_js
 services:
   - postgresql
-adons:
-  postgresql: "12.3"
 node_js:
   - "10.20.0"
 cache:
