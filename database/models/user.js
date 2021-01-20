@@ -15,13 +15,5 @@ module.exports = (sequelize, DataTypes) => {
         }
     );
 
-    // User.associate = function (models) {
-    //     // associations defined here
-    //     User.hasMany(models.Course, {
-    //         foreignKey: "userId",
-    //         as: "courses",
-    //         onDelete: "CASCADE",
-    //     });
-    // };
     return User;
 };

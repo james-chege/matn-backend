@@ -34,4 +34,11 @@ describe('get all courses', () => {
     const res = await apiGet('/api/student/courses', 'eeae')
     expect(res.status).toBe(500);
   });
+
+  it('should get a list of all students', async () => {
+    await app.loginRandom();
+    const res = await apiGet('/api/student');
+    expect(res.body).toHaveProperty('students');
+    expect(res.status).toBe(200);
+  });
 });
