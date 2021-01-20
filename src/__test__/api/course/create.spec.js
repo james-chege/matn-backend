@@ -10,8 +10,6 @@ const apiPost = (url, data = {}) => {
 
 describe('get all courses', () => {
     beforeAll(async () => {
-        await createCourses();
-        await createStudents();
     });
 
     it('should not allow unauthenticated users', async () => {
@@ -23,12 +21,15 @@ describe('get all courses', () => {
     it('should add course successfully', async () => {
         await app.loginRandom();
         const data = {
-            studentId: 1,
-            courseId: 2,
+            courses: [
+                {
+                    studentId: 1,
+                    courseId: 1,
+                },
+            ],
         };
         const res = await apiPost(`/api/student/addCourse`, data);
-        expect(res.body).toHaveProperty('course');
-        expect(res.body.course).toHaveProperty('courseId');
+        expect(res.body).toHaveProperty('courses');
         expect(res.status).toBe(201);
     });
 });

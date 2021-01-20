@@ -28,10 +28,10 @@ describe('get all courses', () => {
     it('should add course while authorized', async () => {
         await app.loginRandom();
         const res = await apiPost('/api/student/addCourse', '', {
-            ...studentCourse,
+            courses: [studentCourse],
         });
         expect(res.status).toBe(201);
-        expect(res.body).toHaveProperty('course');
+        expect(res.body).toHaveProperty('courses');
     });
 
     it('should fail if student course details are not provided', async () => {

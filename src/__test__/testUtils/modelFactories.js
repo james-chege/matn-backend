@@ -1,22 +1,12 @@
 const bcrypt = require('bcrypt');
+const {getCourses} = require('../../../database/__mock__');
+const {getStudents} = require('../../../database/__mock__');
+const {getAdmin} = require('../../../database/__mock__');
 const { User, Course, StudentCourse, Student } = require('../../../database/models');
-
-const hashedPass = (password) => bcrypt.hashSync(password, 12);
 
 const createCourses = async () => {
     return Course.bulkCreate(
-        [
-            {
-                name: 'Artificial Intelligence',
-                description: 'This is some details about this course',
-                instructor: 'Mr. foo',
-            },
-            {
-                name: 'Intro to Computers',
-                description: 'This is some details about this course',
-                instructor: 'Mrs. Bar',
-            },
-        ],
+        getCourses(),
         {
             returning: true,
         }
@@ -25,18 +15,7 @@ const createCourses = async () => {
 
 const createStudents = async () => {
     const students = await Student.bulkCreate(
-        [
-            {
-                name: 'Jane Doe',
-                email: 'janedoe@mail.com',
-                password: hashedPass('password'),
-            },
-            {
-                name: 'John Doe',
-                email: 'johndoe@mail.com',
-                password: hashedPass('password'),
-            },
-        ],
+        getStudents(),
         {
             returning: true,
         }
@@ -47,19 +26,16 @@ const createStudents = async () => {
 const createCourse = async (data) => {
     return StudentCourse.create({
         ...data,
-    });
+    }, {returning: true});
 };
 
 const createAdmin = async () => {
-    const admin = await User.findOne({ where: { email: 'admin@mail.com' }});
+    let admin = await User.findOne({ where: { email: 'admin@mail.com' }});
     if (admin) {
         return admin
     }
-    return User.create({
-        name: 'admin',
-        email: 'admin@mail.com',
-        password: hashedPass('admin'),
-    });
+    admin = await User.create(getAdmin()[0], {returning: true});
+    return admin;
 };
 
 const dropAll = () => {

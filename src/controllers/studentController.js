@@ -1,10 +1,12 @@
 import { validationResult } from 'express-validator';
-import { Course, StudentCourse, Student } from "../../database/models";
-import HttpError from "../utils/http-error";
+import { Course, StudentCourse, Student } from '../../database/models';
+import HttpError from '../utils/http-error';
 
 export default {
     courses: async (req, res, next) => {
         const { id } = req.params;
+
+        console.log('😁😁😁😁😁', id)
 
         try {
             const courses = await StudentCourse.findAll({
@@ -12,37 +14,38 @@ export default {
                 include: [
                     {
                         model: Course,
-                        as: "course",
-                    }
+                        as: 'course',
+                    },
                 ],
             });
             res.json({ courses });
         } catch (e) {
-            const error = new HttpError(e.message || "Could not get courses.", 500);
+            const error = new HttpError(
+                e.message || 'Could not get courses.',
+                500
+            );
             return next(error);
         }
-
     },
-    addCourse: async(req, res, next) => {
+    addCourse: async (req, res, next) => {
         const errors = validationResult(req);
-        if (!errors.isEmpty() ) {
+        if (!errors.isEmpty()) {
             return next(
                 new HttpError(
-                    "Invalid inputs passed, please check your data.",
+                    'Invalid inputs passed, please check your data.',
                     422
                 )
             );
         }
 
         try {
-            const course = await StudentCourse.create({
-                ...req.body,
-                createdBy: req.userData.userId,
+            const courses = await StudentCourse.bulkCreate(req.body.courses, {
+                ignoreDuplicates: true
             });
 
             return res.status(201).json({
-                course,
-                message: "Course added successfully.",
+                courses,
+                message: 'Course(s) added successfully.',
             });
         } catch (error) {
             return res.status(500).json({ error: error.message });
@@ -50,11 +53,16 @@ export default {
     },
     students: async (req, res, next) => {
         try {
-            const students = await Student.findAll({attributes: { exclude: ['password'] }});
+            const students = await Student.findAll({
+                attributes: { exclude: ['password'] },
+            });
             res.json({ students });
         } catch (e) {
-            const error = new HttpError(e.message || "Could not get students.", 500);
+            const error = new HttpError(
+                e.message || 'Could not get students.',
+                500
+            );
             return next(error);
         }
-    }
+    },
 };

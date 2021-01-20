@@ -18,13 +18,22 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
       })
     }
-  };
+  }
+
   StudentCourse.init({
     studentId: DataTypes.INTEGER,
-    courseId: DataTypes.INTEGER
+    courseId: DataTypes.INTEGER,
+    uuid: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'StudentCourse',
   });
+
+  StudentCourse.addHook('beforeBulkCreate', (stc, options) => {
+    stc.forEach(model => {
+      model.uuid = model.studentId + '' + model.courseId
+    })
+  });
+
   return StudentCourse;
 };
