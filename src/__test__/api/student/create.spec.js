@@ -1,11 +1,11 @@
 import 'regenerator-runtime/runtime';
-import { createStudents } from '../../testUtils/modelFactories';
+import { createStudents, dropAll } from '../../testUtils/modelFactories';
 
 const { app } = require('../../testUtils/app');
 const { createCourses } = require('../../testUtils/modelFactories');
 
 const studentCourse = {
-    studentId: 1,
+    studentId: 2,
     courseId: 2,
 };
 
@@ -14,10 +14,6 @@ const apiPost = (url, param = '', data) => {
 };
 
 describe('get all courses', () => {
-    beforeAll(async () => {
-        await createStudents();
-        await createCourses();
-    });
 
     it('should not allow unauthenticated users', async () => {
         const res = await apiPost('/api/student/addCourse');

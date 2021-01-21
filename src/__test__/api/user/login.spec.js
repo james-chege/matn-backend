@@ -9,9 +9,6 @@ const apiPost = (url, param = '', data = {}) => {
 };
 
 describe('get all courses', () => {
-    beforeAll(async () => {
-        await createAdmin();
-    });
 
     it('should fail if logins are not provided', async () => {
         const res = await apiPost('/api/user/login', '', {});

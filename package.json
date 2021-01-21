@@ -8,7 +8,8 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "src/__test__"
+      "src/__test__",
+      "database"
     ]
   },
   "scripts": {
@@ -17,9 +18,10 @@
     "migrate:undo": "sequelize db:migrate:undo:all",
     "seed": "sequelize db:seed:all",
     "seed:undo": "sequelize db:seed:undo:all",
+    "test:seed": "NODE_ENV=test sequelize db:seed:all",
     "setup": "NODE_ENV=test sequelize db:migrate",
     "teardown": "NODE_ENV=test sequelize db:migrate:undo:all",
-    "test": "NODE_ENV=test yarn teardown && yarn setup && jest --colors --coverage && coveralls < coverage/lcov.info"
+    "test": "NODE_ENV=test yarn teardown && yarn setup && yarn test:seed && jest --colors --coverage && coveralls < coverage/lcov.info"
   },
   "dependencies": {
     "@babel/cli": "^7.11.5",

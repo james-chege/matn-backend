@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const {getCourses} = require('../../../database/__mock__');
 const {getStudents} = require('../../../database/__mock__');
 const {getAdmin} = require('../../../database/__mock__');
@@ -48,6 +47,10 @@ const dropAll = () => {
         truncate: true,
     });
     Student.destroy({
+        where: {},
+        truncate: true,
+    });
+    Course.destroy({
         where: {},
         truncate: true,
     });

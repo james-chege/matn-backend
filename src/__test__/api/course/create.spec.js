@@ -1,5 +1,5 @@
 import 'regenerator-runtime/runtime';
-import { createStudents } from '../../testUtils/modelFactories';
+import { createStudents, dropAll } from '../../testUtils/modelFactories';
 
 const { app } = require('../../testUtils/app');
 const { createCourses } = require('../../testUtils/modelFactories');
@@ -9,8 +9,6 @@ const apiPost = (url, data = {}) => {
 };
 
 describe('get all courses', () => {
-    beforeAll(async () => {
-    });
 
     it('should not allow unauthenticated users', async () => {
         const res = await apiPost('/api/student/addCourse');
