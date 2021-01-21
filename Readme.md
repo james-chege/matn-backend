@@ -63,6 +63,7 @@ $ yarn install
    ```bash
    $ yarn start
    ```
+   > Note: use Node.js version range that matches "10.x"
    
  ### Running tests
  
