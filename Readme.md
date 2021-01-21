@@ -54,14 +54,17 @@ $ yarn install
    $ yarn migrate:undo
    ```
    
-   Start express server.
+4. Seed data
+      ```bash
+      $ yarn seed
+      ```
+5. Start express server.
    
    ```bash
    $ yarn start
    ```
    
-   Running tests
-   
-    ```bash
-     $ yarn test
-    ```
+ ### Running tests
+ 
+ ```bash
+    $ yarn test
