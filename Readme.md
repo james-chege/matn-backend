@@ -68,3 +68,6 @@ $ yarn install
  
  ```bash
     $ yarn test
+```
+- Coverage
+<img width="718" alt="Screenshot 2021-01-22 at 00 04 56" src="https://user-images.githubusercontent.com/29597869/105412404-bdb22680-5c45-11eb-9cf3-8d705b8bec29.png">
