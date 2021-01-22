@@ -1,3 +1,5 @@
+## Status
+[![Coverage Status](https://coveralls.io/repos/github/james-chege/matn-backend/badge.svg?branch=develop)](https://coveralls.io/github/james-chege/matn-backend?branch=develop)
 #### Key components
 
 The key files and directories to look at are:

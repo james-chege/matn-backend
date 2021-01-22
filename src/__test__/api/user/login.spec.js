@@ -57,4 +57,12 @@ describe('get all courses', () => {
         expect(res.body).toHaveProperty('token');
         expect(res.status).toBe(200);
     });
+    it('should show 404 if route not found', async () => {
+        const res = await apiPost('/api/user/loginda', '', {
+            email: 'admin@mail.com',
+            password: 'admin',
+        });
+        expect(res.body).toMatchObject({"message": "Could not find this route."});
+        expect(res.status).toBe(404);
+    });
 });
